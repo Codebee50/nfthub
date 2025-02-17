@@ -62,7 +62,7 @@ const MintNft = () => {
             placeholder={"Description"}
             label="Description"
             type="textarea"
-            bottomDescription="Minting fee: 0.1 ETH"
+            bottomDescription="Minting fee: 0.2 ETH"
           />
         </div>
       </div>
