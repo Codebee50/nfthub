@@ -1,8 +1,17 @@
+"use client"
+
 import React from "react";
 import FormInput from "@/components/FormInput";
 import FloatingInput from "@/components/FloatingInput";
+import { useRouter } from "next/navigation";
+
 
 const Page = () => {
+  const router = useRouter()
+
+  const routeToHome = ()=>{
+    router.push('/')
+  }
   return (
     <section className="relative w-full h-[100vh]">
       <div className="bg-video-wrapper">
@@ -17,9 +26,9 @@ const Page = () => {
             <FloatingInput text="Password" type="password" />
           </div>
 
-          <button className="bg-buttonblue btn-primary text-white py-[5.75px] px-[20px] w-full rounded-lg mt-9">
+          <a className="bg-buttonblue btn-primary text-white py-[5.75px] px-[20px] w-full rounded-lg mt-9 text-center" href="/">
             Sign in
-          </button>
+          </a>
 
           <p className="text-textmuted mt-5 text-[0.85rem]">Don't have an account? <a href="/auth/register" className="text-textdark font-semibold">Sign up</a></p>
         </form>

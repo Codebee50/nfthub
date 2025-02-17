@@ -20,13 +20,13 @@ const TopNav = ({transparent=false, variant='dark'}) => {
   return (
     <nav className={`flex flex-row items-center justify-center w-[100vw] top-0 sticky ${transparent? 'bg-transparent': 'bg-white'} z-20`}>
       <div className="padded-section py-4 flex flex-row items-center justify-between">
-        <div className="flex flex-row items-center gap-3">
+        <a className="flex flex-row items-center gap-3" href="/">
           <img src={logo.src} alt="Artverse Marketplace" className="w-[45px]" />
 
           <h1 className="text-3xl font-medium  blue-orange-gradient text-transparent bg-clip-text">
             Artverse.
           </h1>
-        </div>
+        </a>
 
         <div className="flex flex-row items-center gap-4">
           <IoSearchOutline size={17} className="cursor-pointe" color={`${variant !== 'dark'? "#ffffff": ''}`} />

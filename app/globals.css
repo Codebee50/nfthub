@@ -144,6 +144,12 @@ body {
     width: 100%;
     height: 100%;
   }
+
+  .text-gradient-primary {
+    background: linear-gradient(to right, #1066e7 0%, #ffa432 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+  }
 }
 
 @layer base {

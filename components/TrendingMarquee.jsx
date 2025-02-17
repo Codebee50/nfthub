@@ -7,8 +7,7 @@ import { useState } from "react";
 import ArtItem from "./ArtItem";
 import { useEffect } from "react";
 
-const TrendingMarquee = ({label="", moreLink="/"}) => {
-  const [ethExchangeRate, setEthExchangeRate] = useState(0);
+const TrendingMarquee = ({label="", moreLink="/explore/marketplace", ethRate}) => {
 
   const [offset, setOffset] = useState(0);
   const containerRef = useRef(null);
@@ -51,7 +50,7 @@ const TrendingMarquee = ({label="", moreLink="/"}) => {
         >
           {artList.data.docs.map((art, index) => (
             <div className="min-w-[260px] relative" key={art._id}>
-              <ArtItem {...art} ethRate={ethExchangeRate} />
+              <ArtItem {...art} ethRate={ethRate} />
             </div>
           ))}
         </div>

@@ -635,41 +635,44 @@ export const nftList = {
   },
 };
 
-
 export const popoverItemList = [
-    {
-      icon: LuWallet,
-      label: "Account summary",
-      link: '/dashboard/account'
-    },
-    {
-      icon: HiOutlineFolderAdd,
-      label: "Mint NFT",
-      link: '/dashboard/mint'
-    },
-    {
-      icon: AiOutlineFolderOpen,
-      label: "Collection",
-      link: '/dashboard/collection'
-    },
-    {
-      icon: AiOutlineSwap,
-      label: "Transactions",
-      link: '/dashboard/transactions'
-    },
-    {
-      icon: MdOutlineShoppingCart,
-      label: "Sales",
-      link: '/dasbhaord/sales'
-    },
-    {
-      icon: BiShoppingBag,
-      label: "Market place",
-      link: '/explore/marketplace'
-    },
-    {
-      icon: IoSettingsOutline,
-      label: "Settings",
-      link: '/dashboard/settings'
-    },
-  ];
+  {
+    icon: LuWallet,
+    label: "Account summary",
+    link: "/dashboard/account",
+  },
+  {
+    icon: HiOutlineFolderAdd,
+    label: "Mint NFT",
+    link: "/dashboard/mint",
+  },
+  {
+    icon: AiOutlineFolderOpen,
+    label: "Collection",
+    link: "/dashboard/collection",
+  },
+  {
+    icon: AiOutlineSwap,
+    label: "Transactions",
+    link: "/dashboard/transactions",
+  },
+  {
+    icon: MdOutlineShoppingCart,
+    label: "Sales",
+    link: "/dasbhaord/sales",
+  },
+  {
+    icon: BiShoppingBag,
+    label: "Market place",
+    link: "/explore/marketplace",
+  },
+  {
+    icon: IoSettingsOutline,
+    label: "Settings",
+    link: "/dashboard/settings",
+  },
+];
+
+export const formatRate = (value) => {
+  return value.toLocaleString("en-US", { style: "currency", currency: "USD" });
+}
