@@ -10,7 +10,7 @@ const SummaryTab = ({ label, balance, withdraw = false, deposit = true }) => {
       <p>{label}</p>
       <h3 className="text-[30px] font-medium mt-2">{balance}</h3>
 
-      <div className="mt-10 flex flex-row items-center gap-2">
+      <div className="mt-10 flex flex-row items-center gap-2 flex-wrap">
         {deposit && <IconButton label={"deposit"} icon={FiArrowDownRight} />}
         {withdraw && (
           <IconButton variant="border" label="Withdraw" icon={FiArrowUpLeft} />

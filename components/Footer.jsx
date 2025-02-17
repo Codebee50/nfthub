@@ -54,7 +54,7 @@ const Footer = () => {
   ];
   return (
     <footer className="w-full bg-footerdark flex flex-col items-center text-footerlight mt-28">
-      <div className="flex flex-row justify-between w-full padded-section py-12 gap-10">
+      <div className="grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-4 justify-between w-full padded-section py-12 gap-10">
         <div className="flex flex-col w-full">
           <img src={logo.src} alt="Artverse Marketplace" className="w-[45px]" />
 
@@ -112,7 +112,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="w-full flex flex-row items-center justify-between padded-section py-7">
+      <div className="w-full flex flex-row flex-wrap items-center justify-between padded-section py-7 gap-5">
         <p>© 2018 - 2025 Artverse</p>
         <p>Privacy Terms</p>
       </div>

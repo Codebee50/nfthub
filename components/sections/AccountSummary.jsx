@@ -9,7 +9,7 @@ const AccountSummary = () => {
   return (
     <div className="w-full">
       <SectionHeaderText label={"Account Summary"}/>
-      <div className="flex flex-row items-center justify-between gap-2 mt-3">
+      <div className="flex flex-row items-center justify-between gap-2 mt-3 max-[980px]:flex-col">
         <SummaryTab
           label={"Account summary"}
           balance={"0.00 ETH"}
@@ -24,10 +24,10 @@ const AccountSummary = () => {
         />
       </div>
 
-      <div className="w-full rounded-lg bg-[#161c2d] flex flex-row gap-20 items-center mt-10 p-[1.5rem]">
-        <img src={cta.src} alt="cta" className="w-[20%]" />
+      <div className="w-full rounded-lg bg-[#161c2d] flex flex-col br-768:flex-row gap-20 items-center mt-10 p-[1.5rem]">
+        <img src={cta.src} alt="cta" className="br-768:w-[20%] w-full" />
         <div className="flex flex-col">
-          <h4 className="text-white text-[40px] font-semibold">
+          <h4 className="text-white text-[40px] max-[800px]:text-[35px]  font-semibold">
             Enhance Your <br />
             <span className="text-gradient-primary">
               Collection as You Mint

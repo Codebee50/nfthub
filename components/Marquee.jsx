@@ -8,7 +8,7 @@ const Marquee = () => {
         {nftList.data.docs.map((item, index) => (
           <div className="slide mx-2 h-auto w-[360px] box-border" key={item.name}>
             <div className="card overflow-hidden rounded-md mb-3 shadow">
-              <div className="relative overflow-hidden w-[350px]">
+              <div className="relative overflow-hidden w-[250px] md:w-[300px]">
                 <img
                   src={item.image}
                   alt=""

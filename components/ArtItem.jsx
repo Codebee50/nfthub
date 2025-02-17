@@ -1,8 +1,8 @@
 import React from "react";
 
-const formatRate = (value) => {
-  return value.toLocaleString("en-US", { style: "currency", currency: "USD" });
-};
+const formatRate = (value)=>{
+    return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+}
 
 const ArtItem = ({ image, name, user, price, ethRate }) => {
   return (

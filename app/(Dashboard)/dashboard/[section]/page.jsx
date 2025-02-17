@@ -28,8 +28,8 @@ const page = () => {
     <section className="flex flex-col items-center">
       <TopNav />
 
-      <div className="padded-section mt-7 flex flex-row gap-5">
-        <div className="w-[25%] rounded-md overflow-hidden shadow-sm">
+      <div className="padded-section mt-7 flex flex-col br-768:flex-row gap-5">
+        <div className="br-768:w-[25%] rounded-md overflow-hidden shadow-sm">
           <div>
             <div className="h-24 bg-[#C3B7AF]"></div>
 
@@ -55,10 +55,10 @@ const page = () => {
           </div>
         </div>
 
-        <div className="w-[75%] rounded-md overflow-hidden shadow-md p-5">
+        <div className="br-768:w-[75%] rounded-md overflow-hidden shadow-md p-5">
           {getSection(currentSection)}
         </div>
-      </div>
+      </div> 
 
       <Footer />
     </section>

@@ -33,7 +33,7 @@ const MintNft = () => {
   return (
     <div className="w-full">
       <SectionHeaderText label={"Mint NFT"} />
-      <div className="flex flex-row gap-10">
+      <div className="flex flex-col br-768:flex-row gap-10">
         <div className="w-full flex flex-col gap-4">
           <p>Upload your NFT here, Please click "Upload Image" Button.</p>
 
@@ -49,8 +49,7 @@ const MintNft = () => {
         <div className="w-full flex flex-col gap-6">
           <FormInput placeholder={"Title:"} label="Art Title" />
 
-          <div className="flex flex-row items-center gap-4">
-            {/* <FormInput placeholder={"Select category"} label="Type:"/> */}
+          <div className="flex flex-row items-center gap-4 max-lg:flex-wrap  ">
             <SelectInput
               placeholder={"Select category"}
               label="Type:"

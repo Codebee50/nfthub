@@ -9,48 +9,14 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { LuWallet } from "react-icons/lu";
-import { HiOutlineFolderAdd } from "react-icons/hi";
-import { AiOutlineFolderOpen } from "react-icons/ai";
-import { MdOutlineShoppingCart } from "react-icons/md";
-import { BiShoppingBag } from "react-icons/bi";
-import { IoSettingsOutline } from "react-icons/io5";
 import { IoMdLogOut } from "react-icons/io";
 import { AiOutlineSwap } from "react-icons/ai";
 import NavPopOverItem from "./NavPopOverItem";
+import { popoverItemList } from "@/contants/constants";
 
 
 const TopNav = ({transparent=false, variant='dark'}) => {
-  const popoverItemList = [
-    {
-      icon: LuWallet,
-      label: "Account summary",
-    },
-    {
-      icon: HiOutlineFolderAdd,
-      label: "Mint NFT",
-    },
-    {
-      icon: AiOutlineFolderOpen,
-      label: "Collection",
-    },
-    {
-      icon: AiOutlineSwap,
-      label: "Transactions",
-    },
-    {
-      icon: MdOutlineShoppingCart,
-      label: "Sales",
-    },
-    {
-      icon: BiShoppingBag,
-      label: "Market place",
-    },
-    {
-      icon: IoSettingsOutline,
-      label: "Settings",
-    },
-  ];
+
   return (
     <nav className={`flex flex-row items-center justify-center w-[100vw] top-0 sticky ${transparent? 'bg-transparent': 'bg-white'} z-20`}>
       <div className="padded-section py-4 flex flex-row items-center justify-between">

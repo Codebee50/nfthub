@@ -665,7 +665,7 @@ export const popoverItemList = [
     {
       icon: BiShoppingBag,
       label: "Market place",
-      link: '/dashboard/marketplace'
+      link: '/explore/marketplace'
     },
     {
       icon: IoSettingsOutline,

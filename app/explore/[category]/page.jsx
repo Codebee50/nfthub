@@ -9,6 +9,7 @@ import ExpandableText from "@/components/ExpandableText";
 import { artList } from "@/contants/arts";
 import ArtItem from "@/components/ArtItem";
 import axios from "axios";
+import Footer from "@/components/Footer";
 
 const Page = () => {
   const catStats = [
@@ -51,9 +52,9 @@ const Page = () => {
   return (
     <section className="w-full relative">
       <div className="w-full absolute h-[300px] top-0 z-10 bg-gradient-to-b from-black to-transparent">
-        <TopNav transparent={true} variant="light"/>
-        <BottomNav variant="light"/>
-      </div>  
+        <TopNav transparent={true} variant="light" />
+        <BottomNav variant="light" />
+      </div>
 
       <div className="w-full h-[300px]">
         <img
@@ -118,6 +119,8 @@ const Page = () => {
           </div>
         </div>
       </div>
+
+      <Footer />
     </section>
   );
 };

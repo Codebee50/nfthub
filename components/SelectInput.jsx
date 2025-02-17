@@ -17,15 +17,15 @@ const SelectInput = ({
   const [error, setError] = useState(null);
 
   return (
-    <div>
+    <div className="w-full">
       <label htmlFor={name} className="font-semibold">
         {label} {required && <span className="text-red-700">*</span>}
       </label>
       <Select className="mt-2">
-        <SelectTrigger className="w-[180px]">
+        <SelectTrigger className="w-full">
           <SelectValue placeholder="Select category" />
         </SelectTrigger>
-        <SelectContent className="mt-2 shadow-none">
+        <SelectContent className="mt-2 shadow-none w-full">
           {optionList.map((option) => (
             <SelectItem value={option.value} key={option.value}>{option.label}</SelectItem>
           ))}
