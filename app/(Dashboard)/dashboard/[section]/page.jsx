@@ -1,63 +1,26 @@
-'use client'
+"use client";
 import TopNav from "@/components/TopNav";
 import React from "react";
 import hockeyanimal from "@/public/hockeyanimal.jpg";
-import { LuWallet } from "react-icons/lu";
-import { HiOutlineFolderAdd } from "react-icons/hi";
-import { AiOutlineFolderOpen } from "react-icons/ai";
-import { MdOutlineShoppingCart } from "react-icons/md";
-import { BiShoppingBag } from "react-icons/bi";
-import { IoSettingsOutline } from "react-icons/io5";
-import { IoMdLogOut } from "react-icons/io";
-import { AiOutlineSwap } from "react-icons/ai";
 import NavPopOverItem from "@/components/NavPopOverItem";
-import SummaryTab from "@/components/SummaryTab";
-
-import { FiArrowRight } from "react-icons/fi";
 import Footer from "@/components/Footer";
 import { useParams } from "next/navigation";
-import AccountSummary from "@/components/AccountSummary";
+import AccountSummary from "@/components/sections/AccountSummary";
+import MintNft from "@/components/sections/MintNft";
+import { popoverItemList } from "@/contants/constants";
+import Collections from "@/components/sections/Collections";
 
 const getSection = (currentSection) => {
-  if (currentSection == "account") {
-    return <AccountSummary />;
-  }
+  if (currentSection == "account") return <AccountSummary />;
+
+  if (currentSection === "mint") return <MintNft />;
+ 
+  if(currentSection == 'collection') return <Collections/>
 
   return <AccountSummary />;
 };
 
 const page = () => {
-  const popoverItemList = [
-    {
-      icon: LuWallet,
-      label: "Account summary",
-    },
-    {
-      icon: HiOutlineFolderAdd,
-      label: "Mint NFT",
-    },
-    {
-      icon: AiOutlineFolderOpen,
-      label: "Collection",
-    },
-    {
-      icon: AiOutlineSwap,
-      label: "Transactions",
-    },
-    {
-      icon: MdOutlineShoppingCart,
-      label: "Sales",
-    },
-    {
-      icon: BiShoppingBag,
-      label: "Market place",
-    },
-    {
-      icon: IoSettingsOutline,
-      label: "Settings",
-    },
-  ];
-
   const params = useParams();
   const currentSection = params.section || "account";
 

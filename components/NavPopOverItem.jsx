@@ -1,11 +1,12 @@
 import React from "react";
+import Link from "next/link";
 
-const NavPopOverItem = ({ icon: Icon, label }) => {
+const NavPopOverItem = ({ icon: Icon, label, link="/" }) => {
   return (
-    <div className="flex flex-row items-center mt-2 gap-[5px] text-sm cursor-pointer">
+    <Link className="flex flex-row items-center mt-2 gap-[5px] text-sm cursor-pointer" href={link}>
       <Icon />
       <p className="font-medium">{label}</p>
-    </div>
+    </Link>
   );
 };
 

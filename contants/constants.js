@@ -1,3 +1,12 @@
+import { LuWallet } from "react-icons/lu";
+import { HiOutlineFolderAdd } from "react-icons/hi";
+import { AiOutlineFolderOpen } from "react-icons/ai";
+import { MdOutlineShoppingCart } from "react-icons/md";
+import { BiShoppingBag } from "react-icons/bi";
+import { IoSettingsOutline } from "react-icons/io5";
+import { IoMdLogOut } from "react-icons/io";
+import { AiOutlineSwap } from "react-icons/ai";
+
 export const nftList = {
   status: "success",
   message: "NFTs retrieved successfully",
@@ -625,3 +634,42 @@ export const nftList = {
     nextPage: 2,
   },
 };
+
+
+export const popoverItemList = [
+    {
+      icon: LuWallet,
+      label: "Account summary",
+      link: '/dashboard/account'
+    },
+    {
+      icon: HiOutlineFolderAdd,
+      label: "Mint NFT",
+      link: '/dashboard/mint'
+    },
+    {
+      icon: AiOutlineFolderOpen,
+      label: "Collection",
+      link: '/dashboard/collection'
+    },
+    {
+      icon: AiOutlineSwap,
+      label: "Transactions",
+      link: '/dashboard/transactions'
+    },
+    {
+      icon: MdOutlineShoppingCart,
+      label: "Sales",
+      link: '/dasbhaord/sales'
+    },
+    {
+      icon: BiShoppingBag,
+      label: "Market place",
+      link: '/dashboard/marketplace'
+    },
+    {
+      icon: IoSettingsOutline,
+      label: "Settings",
+      link: '/dashboard/settings'
+    },
+  ];

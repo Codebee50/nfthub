@@ -20,7 +20,7 @@ import { AiOutlineSwap } from "react-icons/ai";
 import NavPopOverItem from "./NavPopOverItem";
 
 
-const TopNav = () => {
+const TopNav = ({transparent=false, variant='dark'}) => {
   const popoverItemList = [
     {
       icon: LuWallet,
@@ -52,7 +52,7 @@ const TopNav = () => {
     },
   ];
   return (
-    <nav className="flex flex-row items-center justify-center w-[100vw] top-0 sticky bg-white">
+    <nav className={`flex flex-row items-center justify-center w-[100vw] top-0 sticky ${transparent? 'bg-transparent': 'bg-white'} z-20`}>
       <div className="padded-section py-4 flex flex-row items-center justify-between">
         <div className="flex flex-row items-center gap-3">
           <img src={logo.src} alt="Artverse Marketplace" className="w-[45px]" />
@@ -63,8 +63,8 @@ const TopNav = () => {
         </div>
 
         <div className="flex flex-row items-center gap-4">
-          <IoSearchOutline size={17} className="cursor-pointer" />
-          <CiBrightnessUp size={18} className="cursor-pointer" />
+          <IoSearchOutline size={17} className="cursor-pointe" color={`${variant !== 'dark'? "#ffffff": ''}`} />
+          <CiBrightnessUp size={18} className="cursor-pointer" color={`${variant !== 'dark'? "#ffffff": ''}`}/>
 
           <Popover>
             <PopoverTrigger>

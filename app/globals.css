@@ -15,8 +15,9 @@ body {
     @apply lg:px-16 px-6;
   }
 
+
   .padded-section {
-    @apply w-full max-w-[1150px];
+    @apply w-[90%] br-576:max-w-[540px] br-768:max-w-[720px] br-992:max-w-[960px] br-1400:max-w-[1140px];
   }
 
   .blue-orange-gradient {
@@ -44,6 +45,13 @@ body {
     -webkit-text-fill-color: transparent !important;
   }
 
+  .btn-primary {
+    box-shadow: 0 3px 5px 0 rgba(16, 102, 231, 0.3) !important;
+  }
+
+  .shadow-cus {
+    box-shadow: 0 0 3px rgba(60, 72, 88, 0.15) !important;
+  }
   .card {
     position: relative;
     display: flex;

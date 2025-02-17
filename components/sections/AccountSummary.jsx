@@ -4,10 +4,11 @@ import cta from "@/public/cta.png";
 
 
 import { FiArrowRight } from "react-icons/fi";
+import SectionHeaderText from "../SectionHeaderText";
 const AccountSummary = () => {
   return (
     <div className="w-full">
-      <h3 className="text-[30px] font-[600]">Account summary</h3>
+      <SectionHeaderText label={"Account Summary"}/>
       <div className="flex flex-row items-center justify-between gap-2 mt-3">
         <SummaryTab
           label={"Account summary"}

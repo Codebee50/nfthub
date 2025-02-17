@@ -16,6 +16,10 @@ module.exports = {
 			buttonblue: '#1066e7',
 			footerdark: '#202942',
 			footerlight: '#adb5bd',
+			textmuted: '#8492a6',
+			textdark: '#3c4858',
+			light: '#f8f9fc',
+			danger: '#d93030 ',
   			card: {
   				DEFAULT: 'hsl(var(--card))',
   				foreground: 'hsl(var(--card-foreground))'
@@ -59,7 +63,19 @@ module.exports = {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
-  		}
+  		},
+		screens: {
+			'1k': '1000px',
+			'922': '922px',
+			'768': '768px',
+			'576': '567px',
+			'br-1400': '1400px',
+			'br-1200': '1200px',
+			'br-992': '992px',
+			'br-768': '768px',
+			'br-576': '576px',
+			
+		}
   	}
   },
   plugins: [require("tailwindcss-animate")],
