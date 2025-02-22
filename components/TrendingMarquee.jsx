@@ -6,14 +6,19 @@ import { artList } from "@/contants/arts";
 import { useState } from "react";
 import ArtItem from "./ArtItem";
 import { useEffect } from "react";
+import { nftList } from "@/contants/constants";
 
-const TrendingMarquee = ({label="", moreLink="/explore/marketplace", ethRate}) => {
-
+const TrendingMarquee = ({
+  label = "",
+  moreLink = "/explore/marketplace",
+  ethRate=0,
+  objectList = [],
+}) => {
   const [offset, setOffset] = useState(0);
   const containerRef = useRef(null);
   const itemWidth = 200; // Adjust item width
   const speed = 2000; // 2 seconds interval
-  const totalItems = artList.data.docs.length; // Adjust based on content
+  const totalItems = objectList.length; // Adjust based on content
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -34,7 +39,10 @@ const TrendingMarquee = ({label="", moreLink="/explore/marketplace", ethRate}) =
           <div className="w-full flex flex-row items-center justify-between">
             <h3 className="font-bold text-textdark ">{label}</h3>
 
-            <a className="flex flex-row items-center gap-1 text-sm" href={moreLink}>
+            <a
+              className="flex flex-row items-center gap-1 text-sm"
+              href={moreLink}
+            >
               <p>See more</p>
               <IoArrowForward />
             </a>
@@ -48,15 +56,28 @@ const TrendingMarquee = ({label="", moreLink="/explore/marketplace", ethRate}) =
           className="flex flex-row transition-transform duration-700 ease-in-out gap-3 w-full"
           style={{ transform: `translateX(${offset}px)` }}
         >
-          {artList.data.docs.map((art, index) => (
-            <div className="min-w-[260px] relative" key={art._id}>
-              <ArtItem {...art} ethRate={ethRate} />
+          {objectList.map((nft) => {
+            return (
+              <div className="min-w-[250px] relative" key={nft.id}>
+                <ArtItem
+                  image={nft.image}
+                  name={nft.title}
+                  _id={nft.id}
+                  price={nft.price}
+                  ethRate={ethRate}
+                  avatar={nft.owner.profile_photo}
+                />
+              </div>
+            );
+          })}
+
+          {/* {artList.data.docs.map((art, index) => (
+            <div className="min-w-[250px] relative" key={art._id}>
+              <ArtItem {...art} avatar={art.user.avatar} ethRate={ethRate} />
             </div>
-          ))}
+          ))} */}
         </div>
       </div>
-
-
     </section>
   );
 };

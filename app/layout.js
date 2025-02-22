@@ -1,5 +1,11 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { ReactQueryProvider } from "./ReactQueryProvider";
+import StoreProvider from "./StoreProvider";
+import { ToastContainer } from "react-toastify";
+import { Suspense } from "react";
+import PageLoader from "@/components/PageLoader";
+import Header from "@/components/Header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,12 +24,18 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
-    </html>
+    <ReactQueryProvider>
+      <StoreProvider>
+        <html lang="en">
+          <body
+            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          >
+            <ToastContainer />
+            <Header />
+            <Suspense fallback={<PageLoader />}>{children}</Suspense>
+          </body>
+        </html>
+      </StoreProvider>
+    </ReactQueryProvider>
   );
 }

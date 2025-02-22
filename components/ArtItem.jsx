@@ -1,39 +1,39 @@
 import React from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import ImgDef from "./ImgDef";
 
-const formatRate = (value)=>{
-    return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-}
+const formatRate = (value) => {
+  return value.toLocaleString("en-US", { style: "currency", currency: "USD" });
+};
 
+const ArtItem = ({ image, name, user, avatar, price, ethRate, _id, clickEvents=true }) => {
+  const router = useRouter();
 
-const ArtItem = ({ image, name, user, price, ethRate, _id }) => {
-  const router = useRouter()
-
-  const routeToDetail= ()=>{
-    router.push(`/product/${_id}`)
-  }
+  const routeToDetail = () => {
+    router.push(`/product/${_id}`);
+  };
   return (
-    <div className="w-full rounded-xl overflow-hidden shadow-cus cursor-pointer" onClick={routeToDetail}>
-      <div className="w-full h-[200px] bg-slate-400 relative">
-        <img
-          src={image}
-          className="w-full h-full object-cover object-center "
-          alt=""
-        />
+    <div
+      className="flex flex-col w-full rounded-xl overflow-hidden shadow-cus cursor-pointer"
+      onClick={clickEvents?routeToDetail:null}
+    >
+      <div className="w-full max-h-[200px] overflow-hidden bg-transparent">
+        <Image src={image} width={500} height={500} alt={name} />
       </div>
       <div className="w-full p-3">
-        <div className="-mt-[18px] z-20 absolute ">
-          <img
-            src={user.avatar}
+        <div className="-mt-[18px] z-20 absolute">
+          <ImgDef
+            src={avatar}
             className="w-[36px] h-[36px] rounded-full border-[3px] border-white "
             alt=""
           />
         </div>
 
-        <div className="mt-5">
-          <p className="font-semibold mt-3 text-textdark">{name}</p>
+        <div className="mt-5 bg-white w-full">
+          <p className="font-semibold mt-3 text-textdark text-start">{name}</p>
           <div className="flex flex-row items-center mt-2 font-semibold text-sm text-textdark">
-            <p className="text-buttonblue font-semibold text-sm">{price}ETH</p>
+            <p className="text-buttonblue font-semibold text-sm">{parseFloat(price)}ETH</p>
             <p>({formatRate(price * ethRate)})</p>
           </div>
         </div>

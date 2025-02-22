@@ -2,7 +2,7 @@
 
 import React, { useRef } from "react";
 import { useState } from "react";
-
+import { toast } from "react-toastify";
 
 const FormInput = ({
   label = "",
@@ -14,9 +14,14 @@ const FormInput = ({
   rows = 5,
   cols = 10,
   bottomDescription = null,
+  initial = null,
+  value = null,
+  readOnly = false,
+  copyEnabled = false,
+  className=""
 }) => {
   const inputClassName =
-    "border border-[#e9ecef] rounded-md px-[0.75rem] py-[0.375rem] w-full outline-none mt-2";
+    `border border-[#e9ecef] rounded-md px-[0.75rem] py-[0.375rem] w-full outline-none mt-2 ${className}`;
   const [error, setError] = useState(null);
   const inputRef = useRef(null);
 
@@ -42,6 +47,12 @@ const FormInput = ({
           className={inputClassName}
           ref={inputRef}
           onBlur={handleBlur}
+          readOnly={readOnly}
+          {...(value !== null
+            ? { value }
+            : initial !== null
+            ? { defaultValue: initial }
+            : {})}
         ></textarea>
       );
     }
@@ -56,14 +67,41 @@ const FormInput = ({
         placeholder={placeholder}
         ref={inputRef}
         onBlur={handleBlur}
+        readOnly={readOnly}
+        {...(value !== null
+          ? { value }
+          : initial !== null
+          ? { defaultValue: initial }
+          : {})}
       />
     );
   };
+
+  const handleCopyClicked = async () => {
+    const inputValue = inputRef.current.value;
+    try {
+      await navigator.clipboard.writeText(inputValue);
+      toast.success("Copied successfully!");
+    } catch (err) {
+      toast.error("Failed to copy!");
+    }
+  };
   return (
     <div className="w-full flex flex-col">
-      <label htmlFor={name} className="font-semibold">
-        {label} {required && <span className="text-red-700">*</span>}
-      </label>
+      <div className="w-full flex flex-row items-center justify-between">
+        <label htmlFor={name} className="font-semibold">
+          {label} {required && <span className="text-red-700">*</span>}
+        </label>
+
+        {copyEnabled && (
+          <p
+            className="font-bold text-buttonblue cursor-pointer"
+            onClick={handleCopyClicked}
+          >
+            COPY
+          </p>
+        )}
+      </div>
 
       {getInputField(type)}
 
@@ -74,7 +112,7 @@ const FormInput = ({
           error ? "opacity-100" : "opacity-0"
         }`}
       >
-        {error || '-'}
+        {error || "-"}
       </p>
     </div>
   );

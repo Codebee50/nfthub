@@ -659,7 +659,7 @@ export const popoverItemList = [
   {
     icon: MdOutlineShoppingCart,
     label: "Sales",
-    link: "/dasbhaord/sales",
+    link: "/dashboard/sales",
   },
   {
     icon: BiShoppingBag,

@@ -1,26 +1,49 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SummaryTab from "@/components/SummaryTab";
 import cta from "@/public/cta.png";
-
-
 import { FiArrowRight } from "react-icons/fi";
 import SectionHeaderText from "../SectionHeaderText";
+import useFetchRequest from "@/hooks/useFetch";
+import { makeApiUrl } from "@/contants/beRoute";
+import { toast } from "react-toastify";
+import { handleGenericError } from "@/utils/errorHandler";
+
 const AccountSummary = () => {
+  const [salesBalance, setSalesBalance] = useState(0.0);
+  const [accountBalance, setAccountBalance] = useState(0.0);
+
+  const { mutate: getBalances, isLoading } = useFetchRequest(
+    makeApiUrl("/api/v1/wallet/balance/"),
+    (response) => {
+      setSalesBalance(response?.data?.data?.sales_balance || 0.0);
+      setAccountBalance(response?.data?.data?.account_balance || 0.0);
+    },
+    (error) => {
+      toast.error(handleGenericError(error));
+    }
+  );
+
+  useEffect(() => {
+    getBalances();
+  }, []);
+
   return (
     <div className="w-full">
-      <SectionHeaderText label={"Account Summary"}/>
+      <SectionHeaderText label={"Account Summary"} />
       <div className="flex flex-row items-center justify-between gap-2 mt-3 max-[980px]:flex-col">
         <SummaryTab
           label={"Account summary"}
-          balance={"0.00 ETH"}
+          balance={`${accountBalance} ETH`}
           withdraw={true}
+          tab="account"
         />
 
         <SummaryTab
           label={"Sales balance"}
-          balance={"0.00 ETH"}
+          balance={`${salesBalance} ETH`}
           deposit={false}
           withdraw={true}
+          tab="sales"
         />
       </div>
 

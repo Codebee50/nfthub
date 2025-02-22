@@ -1,5 +1,4 @@
-
-"use client"
+"use client";
 import BottomNav from "@/components/BottomNav";
 import Marquee from "@/components/Marquee";
 import TopNav from "@/components/TopNav";
@@ -8,9 +7,15 @@ import Footer from "@/components/Footer";
 import { useEffect, useState } from "react";
 import TrendingMarquee from "@/components/TrendingMarquee";
 import axios from "axios";
+import useFetchRequest from "@/hooks/useFetch";
+import { makeApiUrl } from "@/contants/beRoute";
+import { toast } from "react-toastify";
+import PageLoader from "@/components/PageLoader";
 
 export default function Home() {
   const [ethExchangeRate, setEthExchangeRate] = useState(0);
+  const [categoryList, setCategoryList] = useState([]);
+  const [nftList, setNftList] = useState([]);
 
   const getEthPrice = async () => {
     const response = await axios.get(
@@ -25,26 +30,66 @@ export default function Home() {
     return 0;
   };
 
+  const { mutate: getCategories, isLoading: isFetchingCategories } =
+    useFetchRequest(
+      makeApiUrl("/api/v1/product/category/"),
+      (response) => {
+        setCategoryList(response.data);
+        console.log(response);
+      },
+      (error) => {
+        toast.error("Failed to fetch categories");
+      }
+    );
+
+  const { mutate: getNfts, isLoading: isFetchingNfts } = useFetchRequest(
+    makeApiUrl("/api/v1/product/nft/"),
+    (response) => {
+      setNftList(response.data);
+    },
+    (error) => {
+      toast.error("Failed to fetch categories");
+    }
+  );
+
   useEffect(() => {
+    getCategories();
     getEthPrice();
+    getNfts();
   }, []);
+
   return (
     <section className="w-full flex flex-col">
       <TopNav />
       <BottomNav />
       <div className="col-12">
-        <Marquee />
+        <Marquee objectList={nftList} />
       </div>
       <div className="col-12">
-        <Marquee />
+        <Marquee objectList={nftList} />
       </div>
 
-      <TrendingMarquee label="Trending in arts" ethRate={ethExchangeRate} />
+      {isFetchingCategories || isFetchingNfts ? (
+        <PageLoader />
+      ) : (
+        categoryList.map((category) => {
+          const objects = nftList.filter((item)=>item.category==category.id)
+          return (
+            <TrendingMarquee
+              label={`Trending in ${category.name}`}
+              ethRate={ethExchangeRate}
+              key={`cat-${category.name}`}
+              objectList={objects}
+            />
+          );
+        })
+      )}
+      {/* <TrendingMarquee label="Trending in arts" ethRate={ethExchangeRate} />
       <TrendingMarquee label="Trending in games" ethRate={ethExchangeRate} />
       <TrendingMarquee label="Membership" ethRate={ethExchangeRate} />
       <TrendingMarquee label="Trending in PFPs" ethRate={ethExchangeRate} />
       <TrendingMarquee label="Photography" ethRate={ethExchangeRate} />
-      <TrendingMarquee label="Others" ethRate={ethExchangeRate} />
+      <TrendingMarquee label="Others" ethRate={ethExchangeRate} /> */}
       <Footer />
     </section>
   );

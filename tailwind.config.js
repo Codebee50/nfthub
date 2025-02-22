@@ -20,6 +20,7 @@ module.exports = {
 			textdark: '#3c4858',
 			light: '#f8f9fc',
 			danger: '#d93030 ',
+			grey01: "#dee2e6",
   			card: {
   				DEFAULT: 'hsl(var(--card))',
   				foreground: 'hsl(var(--card-foreground))'

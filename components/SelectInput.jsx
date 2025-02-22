@@ -8,11 +8,13 @@ import {
 } from "@/components/ui/select";
 import { useState } from "react";
 
-const SelectInput = ({
+const   SelectInput = ({
   name,
   required = true,
   label = "",
   optionList = [],
+  placeholder = "Select category",
+  defaultValue = null,
 }) => {
   const [error, setError] = useState(null);
 
@@ -21,13 +23,19 @@ const SelectInput = ({
       <label htmlFor={name} className="font-semibold">
         {label} {required && <span className="text-red-700">*</span>}
       </label>
-      <Select className="mt-2">
+      <Select
+        className="mt-2"
+        name={name}
+        defaultValue={defaultValue || undefined}
+      >
         <SelectTrigger className="w-full">
-          <SelectValue placeholder="Select category" />
+          <SelectValue placeholder={placeholder} />
         </SelectTrigger>
         <SelectContent className="mt-2 shadow-none w-full">
           {optionList.map((option) => (
-            <SelectItem value={option.value} key={option.value}>{option.label}</SelectItem>
+            <SelectItem value={option.value} key={option.value}>
+              {option.label}
+            </SelectItem>
           ))}
         </SelectContent>
       </Select>

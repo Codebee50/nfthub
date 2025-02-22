@@ -3,7 +3,7 @@ import React from "react";
 import { useRef } from "react";
 import { useState } from "react";
 
-const FloatingInput = ({ required = true, text = "", type="text" }) => {
+const FloatingInput = ({ required = true, text = "", type="text", name="" }) => {
   const [error, setError] = useState(null);
   const inputRef = useRef(null);
 
@@ -26,6 +26,8 @@ const FloatingInput = ({ required = true, text = "", type="text" }) => {
           onBlur={handleBlur}
           ref={inputRef}
           type={type}
+          name={name}
+          required={required}
         />
         <span className="absolute left-3 top-2 text-gray-500 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:top-2 peer-focus:text-sm ">
           {text}
