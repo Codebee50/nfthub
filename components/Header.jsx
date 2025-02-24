@@ -13,7 +13,6 @@ const Header = () => {
     pollingInterval: 900000,
   });
 
-  console.log('the data', data)
   useEffect(() => {
     if (data) dispatch(setCredentials(data?.email ? data : null));
 

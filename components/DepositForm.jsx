@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import FormInput from "./FormInput";
 import LeftRightKeyValue from "./LeftRightKeyValue";
 import HorLine from "./HorLine";
@@ -7,32 +7,52 @@ import usePostRequest from "@/hooks/usePost";
 import { makeApiUrl } from "@/contants/beRoute";
 import { toast } from "react-toastify";
 import { handleGenericError } from "@/utils/errorHandler";
+import useFetchRequest from "@/hooks/useFetch";
 
 const DepositForm = () => {
   const postRequest = usePostRequest();
-  const {isLoading, mutate:submitDepositForm} = postRequest(
-    makeApiUrl('/api/v1/wallet/deposit/'),
-    (response)=>{
-        toast.success("Deposit successful!, you will be notified when the admin confirms the deposit")
+  const { isLoading, mutate: submitDepositForm } = postRequest(
+    makeApiUrl("/api/v1/wallet/deposit/"),
+    (response) => {
+      toast.success(
+        "Deposit successful!, you will be notified when the admin confirms the deposit"
+      );
     },
-    (error)=>{
-        toast.error(handleGenericError(error))
+    (error) => {
+      toast.error(handleGenericError(error));
     }
-  )
+  );
 
-  const handleFormSubmitted = (e)=>{
-    e.preventDefault()
-    const formData = new FormData(e.target)
+  const [business, setBusiness] = useState(null);
+  const { mutate: getBusiness, isLoading: isGettingBusiness } = useFetchRequest(
+    makeApiUrl("/api/v1/business/"),
+    (response) => {
+      setBusiness(response.data);
+    },
+    (error) => {
+      toast.error("Fatal: error getting business");
+    }
+  );
+
+  const handleFormSubmitted = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
     const reqBody = {
-        amount: formData.get('amount'),
-        transaction_hash: formData.get('transaction_hash')
-    }
-    submitDepositForm(reqBody)
-  }
+      amount: formData.get("amount"),
+      transaction_hash: formData.get("transaction_hash"),
+    };
+    submitDepositForm(reqBody);
+  };
 
+  useEffect(() => {
+    getBusiness();
+  }, []);
 
   return (
-    <form className="w-full flex flex-col overflow-y-scroll p-4" onSubmit={handleFormSubmitted}>
+    <form
+      className="w-full flex flex-col overflow-y-scroll p-4"
+      onSubmit={handleFormSubmitted}
+    >
       <FormInput
         label="Network"
         name={"network"}
@@ -44,7 +64,7 @@ const DepositForm = () => {
         label="Wallet address"
         name={"wallet-address"}
         required={false}
-        initial={"0x5a709E26Ca126ab484041d7580fC9990F6E47E1b"}
+        initial={business?.deposit_address}
         readOnly={true}
         copyEnabled={true}
       />
@@ -92,7 +112,10 @@ const DepositForm = () => {
         <HorLine />
 
         <div>
-          <LongLoadableButton label={"I have completed the deposit"} isLoading={isLoading} />
+          <LongLoadableButton
+            label={"I have completed the deposit"}
+            isLoading={isLoading}
+          />
         </div>
       </div>
     </form>

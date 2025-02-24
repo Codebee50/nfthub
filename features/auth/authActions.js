@@ -19,7 +19,6 @@ export const userLogin = createAsyncThunk(
         config
       );
 
-      console.log('the data', data)
       Cookies.set("userToken", data.data.access_token, { expires: 1 });
       Cookies.set("refreshToken", data.data.refresh_token, { expires: 1 });
       return data;

@@ -25,8 +25,24 @@ const Collections = () => {
     }
   );
 
+  const [ethExchangeRate, setEthExchangeRate] = useState(0);
+
+  const getEthPrice = async () => {
+    const response = await axios.get(
+      "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd"
+    );
+    console.log(response.status);
+    if (response.status == 200) {
+      setEthExchangeRate(response?.data?.ethereum?.usd || 0);
+
+      return response?.data?.ethereum?.usd || 0;
+    }
+    return 0;
+  };
+
   useEffect(() => {
     getUserNfts();
+    getEthPrice()
   }, []);
 
   return (
@@ -51,9 +67,10 @@ const Collections = () => {
                   name={nft.title}
                   _id={nft.id}
                   price={nft.price}
-                  ethRate={0}
-                  avatar={nft.owner .profile_photo}
+                  ethRate={ethExchangeRate}
+                  avatar={nft.owner.profile_photo}
                   clickEvents={false}
+                  
                 />
               </EditArt>
             );

@@ -11,6 +11,7 @@ import useFetchRequest from "@/hooks/useFetch";
 import { makeApiUrl } from "@/contants/beRoute";
 import { toast } from "react-toastify";
 import PageLoader from "@/components/PageLoader";
+import UserMessaging from "@/components/UserMessaging";
 
 export default function Home() {
   const [ethExchangeRate, setEthExchangeRate] = useState(0);
@@ -60,6 +61,9 @@ export default function Home() {
 
   return (
     <section className="w-full flex flex-col">
+      {/* <section className="fixed bottom-0 right-0 z-30 cursor-pointer">
+        <UserMessaging />
+      </section> */}
       <TopNav />
       <BottomNav />
       <div className="col-12">
@@ -73,7 +77,9 @@ export default function Home() {
         <PageLoader />
       ) : (
         categoryList.map((category) => {
-          const objects = nftList.filter((item)=>item.category==category.id)
+          const objects = nftList.filter(
+            (item) => item.category == category.id
+          );
           return (
             <TrendingMarquee
               label={`Trending in ${category.name}`}

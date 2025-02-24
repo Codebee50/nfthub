@@ -68,6 +68,7 @@ const FormInput = ({
         ref={inputRef}
         onBlur={handleBlur}
         readOnly={readOnly}
+        step={"0.1"}
         {...(value !== null
           ? { value }
           : initial !== null

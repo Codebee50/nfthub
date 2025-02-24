@@ -22,6 +22,17 @@ const MintNft = () => {
 
   const [categoryList, setCategoryList] = useState([]);
 
+  const [business, setBusiness] = useState(null);
+  const { mutate: getBusiness, isLoading: isGettingBusiness } = useFetchRequest(
+    makeApiUrl("/api/v1/business/"),
+    (response) => {
+      setBusiness(response.data);
+    },
+    (error) => {
+      toast.error("Fatal: error getting business");
+    }
+  );
+
   const { mutate: getCategoryList, isLoading: isCategoryLoading } =
     useFetchRequest(
       makeApiUrl("/api/v1/product/category/"),
@@ -117,6 +128,7 @@ const MintNft = () => {
   };
 
   useEffect(() => {
+    getBusiness();
     getCategoryList();
   }, []);
   return (
@@ -183,7 +195,7 @@ const MintNft = () => {
             placeholder={"Description"}
             label="Description"
             type="textarea"
-            bottomDescription="Minting fee: 0.2 ETH"
+            bottomDescription={`Minting fee: ${business?.minting_fee} ETH`}
             name={"description"}
           />
 

@@ -68,7 +68,7 @@ const EditArt = ({ art, children }) => {
     const reqBody = {
       title: formData.get("title"),
       price: formData.get("price"),
-      is_listed: formData.get("is_listed") == "true" ? true : false,
+      is_listed: formData.get("is_listed") == "true" ? false : true,
       description: formData.get("description"),
     };
     mutate(reqBody);
@@ -103,7 +103,7 @@ const EditArt = ({ art, children }) => {
               name={"is_listed"}
               optionList={isListedOptions}
               label="Is listed"
-              defaultValue={art.is_listed ? "true" : "false"}
+              defaultValue={art.is_listed ? "false" : "true"}
             />
             <SelectInput
               name={"category"}
