@@ -152,7 +152,7 @@ const Page = () => {
                   _id={art.id}
                   avatar={art.owner.profile_photo}
                   price={art.price}
-                  image={`${BASE_BE_URL}/${art.image}`}
+                  image={`${BASE_BE_URL}${art.image}`}
                   ethRate={ethExchangeRate}
                 />
               ))}
