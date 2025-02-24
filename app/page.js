@@ -60,6 +60,10 @@ export default function Home() {
     getNfts();
   }, []);
 
+  const halfLength = Math.ceil(nftList.length / 2);
+  const firstHalf = nftList.length > 0 ? nftList.slice(0, halfLength) : [];
+  const secondHalf = nftList.length > 0 ? nftList.slice(halfLength) : [];
+
   return (
     <section className="w-full flex flex-col">
       {/* <section className="fixed bottom-0 right-0 z-30 cursor-pointer">
@@ -68,10 +72,10 @@ export default function Home() {
       <TopNav />
       <BottomNav />
       <div className="col-12">
-        <Marquee objectList={nftList} />
+        <Marquee objectList={firstHalf} />
       </div>
       <div className="col-12">
-        <Marquee objectList={nftList} />
+        <Marquee objectList={secondHalf} />
       </div>
 
       {isFetchingCategories || isFetchingNfts ? (
