@@ -14,6 +14,7 @@ import PageLoader from "@/components/PageLoader";
 import UserMessaging from "@/components/UserMessaging";
 
 export default function Home() {
+  // dep
   const [ethExchangeRate, setEthExchangeRate] = useState(0);
   const [categoryList, setCategoryList] = useState([]);
   const [nftList, setNftList] = useState([]);
