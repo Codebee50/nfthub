@@ -19,6 +19,8 @@ import AdminSettings from "@/components/sections/admin/AdminSettings";
 import AdminDeposits from "@/components/sections/admin/AdminDeposits";
 import AdminWithdrawal from "@/components/sections/admin/AdminWithdrawal";
 import AdminArtUploads from "@/components/sections/admin/AdminArtUploads";
+import AdminCategory from "@/components/sections/AdminCategory";
+import { MdOutlineCategory } from "react-icons/md";
 
 const getSection = (currentSection) => {
   if (currentSection == "settings") return <AdminSettings />;
@@ -28,6 +30,8 @@ const getSection = (currentSection) => {
   if (currentSection == "withdrawals") return <AdminWithdrawal />;
 
   if (currentSection == "art") return <AdminArtUploads />;
+
+  if (currentSection == "category") return <AdminCategory />;
 
   return <AdminSettings />;
 };
@@ -52,6 +56,11 @@ const adminRightPanelList = [
     icon: IoChatbubbleOutline,
     label: "Chat",
     link: "/dashboard/account",
+  },
+  {
+    icon: MdOutlineCategory,
+    label: "Category",
+    link: "/admin/category",
   },
   {
     icon: IoSettingsOutline,
