@@ -18,8 +18,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "ArtVerse Marketplace",
-  description: "Your one stop location for minting nfts",
+  title: "Genesis gallery",
+  description: "Your ultimate destination for minting NFTs.",
 };
 
 export default function RootLayout({ children }) {
