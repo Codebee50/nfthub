@@ -6,6 +6,7 @@ import { ToastContainer } from "react-toastify";
 import { Suspense } from "react";
 import PageLoader from "@/components/PageLoader";
 import Header from "@/components/Header";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,6 +28,12 @@ export default function RootLayout({ children }) {
     <ReactQueryProvider>
       <StoreProvider>
         <html lang="en">
+          <head>
+            <Script
+              src="//code.jivosite.com/widget/B8jyp4XpBw"
+              strategy="lazyOnload"
+            />
+          </head>
           <body
             className={`${geistSans.variable} ${geistMono.variable} antialiased`}
           >
@@ -34,8 +41,6 @@ export default function RootLayout({ children }) {
             <Header />
             <Suspense fallback={<PageLoader />}>{children}</Suspense>
           </body>
-          <script src="//code.jivosite.com/widget/B8jyp4XpBw" async></script>
-
         </html>
       </StoreProvider>
     </ReactQueryProvider>
