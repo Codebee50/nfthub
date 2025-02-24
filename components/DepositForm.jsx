@@ -15,7 +15,7 @@ const DepositForm = () => {
     makeApiUrl("/api/v1/wallet/deposit/"),
     (response) => {
       toast.success(
-        "Deposit successful!, you will be notified when the admin confirms the deposit"
+        "Deposit successful!, you will be notified when the deposit is confirmed"
       );
     },
     (error) => {
