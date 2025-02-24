@@ -29,7 +29,7 @@ const getSection = (currentSection) => {
 
   if (currentSection == "art") return <AdminArtUploads />;
 
-  return <Home />;
+  return <AdminSettings />;
 };
 
 const adminRightPanelList = [

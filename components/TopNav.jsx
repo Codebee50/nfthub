@@ -31,7 +31,7 @@ const TopNav = ({ transparent = false, variant = "dark" }) => {
           <img src={logo.src} alt="Artverse Marketplace" className="w-[45px]" />
 
           <h1 className="text-3xl font-medium  blue-orange-gradient text-transparent bg-clip-text">
-            MetaGallery
+            GenesisGallery
           </h1>
         </a>
 
@@ -73,7 +73,7 @@ const TopNav = ({ transparent = false, variant = "dark" }) => {
                 <div className="flex flex-col p-4">
                   <p className="font-light">
                     Balance:{" "}
-                    <span className="text-blue-500 font-bold text-sm">
+                    <span className="text-buttonblue font-bold text-sm">
                       0.000000 ETH
                     </span>
                   </p>

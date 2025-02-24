@@ -20,7 +20,7 @@ body {
   }
 
   .blue-orange-gradient {
-    @apply bg-gradient-to-r from-[#3263AB] via-[#85829D] to-[#E5A456];
+    @apply bg-gradient-to-r from-[#108632] via-[#85829D] to-[#E5A456];
   }
 
   @keyframes scroll {
