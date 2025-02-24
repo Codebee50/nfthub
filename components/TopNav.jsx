@@ -28,7 +28,7 @@ const TopNav = ({ transparent = false, variant = "dark" }) => {
     >
       <div className="padded-section py-4 flex flex-row items-center justify-between">
         <a className="flex flex-row items-center gap-3" href="/">
-          <img src={logo.src} alt="Artverse Marketplace" className="w-[45px]" />
+          <img src={logo.src} alt="Artverse Marketplace" className="w-[35px] md:w-[40px]" />
 
           <h1 className="text-3xl font-medium  blue-orange-gradient text-transparent bg-clip-text">
             GenesisGallery
