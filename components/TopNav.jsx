@@ -1,5 +1,5 @@
-"use client"
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import logo from "@/public/logo.png";
 import Image from "next/image";
 import hockeyanimal from "@/public/hockeyanimal.jpg";
@@ -17,9 +17,57 @@ import { popoverItemList } from "@/contants/constants";
 import { useSelector } from "react-redux";
 import { IoLogInOutline } from "react-icons/io5";
 import ImgDef from "./ImgDef";
+import useFetchRequest from "@/hooks/useFetch";
+import { makeApiUrl } from "@/contants/beRoute";
+import usePostRequest from "@/hooks/usePost";
+import { handleGenericError } from "@/utils/errorHandler";
+import { toast } from "react-toastify";
+import Cookies from "js-cookie";
+import CircleSpinner from "./loaders/CircleSpinner";
+import { logout } from "@/features/auth/authSlice";
+import { useDispatch } from "react-redux";
 
 const TopNav = ({ transparent = false, variant = "dark" }) => {
   const { isAuthenticated, userInfo } = useSelector((state) => state.auth);
+  const [accountBalance, setAccountBalance] = useState(0);
+
+  const postRequest = usePostRequest();
+  const dispatch = useDispatch();
+
+  const { mutate: getUserBalance, isLoading: isGettingBalance } =
+    useFetchRequest(
+      makeApiUrl("/api/v1/wallet/balance/"),
+      (response) => {
+        console.log(response);
+        setAccountBalance(response.data.data.account_balance);
+      },
+      (error) => {}
+    );
+
+  const { mutate: logoutUser, isLoading: isLoggingOut } = postRequest(
+    makeApiUrl("/api/v1/auth/logout/"),
+    (response) => {
+      toast.success("Logout successful");
+      dispatch(logout());
+    },
+    (error) => {
+      toast.error(handleGenericError(error));
+    }
+  );
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      getUserBalance();
+    }
+  }, [isAuthenticated]);
+
+  const handleLogout = () => {
+    const reqBody = {
+      refresh_token: Cookies.get("refreshToken"),
+    };
+
+    logoutUser(reqBody);
+  };
   return (
     <nav
       className={`flex flex-row items-center justify-center w-[100vw] top-0 sticky ${
@@ -28,7 +76,11 @@ const TopNav = ({ transparent = false, variant = "dark" }) => {
     >
       <div className="padded-section py-4 flex flex-row items-center justify-between">
         <a className="flex flex-row items-center gap-3" href="/">
-          <img src={logo.src} alt="Artverse Marketplace" className="w-[35px] md:w-[40px]" />
+          <img
+            src={logo.src}
+            alt="Artverse Marketplace"
+            className="w-[35px] md:w-[40px]"
+          />
 
           <h1 className="text-3xl font-medium  blue-orange-gradient text-transparent bg-clip-text">
             GenesisGallery
@@ -74,7 +126,7 @@ const TopNav = ({ transparent = false, variant = "dark" }) => {
                   <p className="font-light">
                     Balance:{" "}
                     <span className="text-buttonblue font-bold text-sm">
-                      0.000000 ETH
+                      {parseFloat(accountBalance)} ETH
                     </span>
                   </p>
 
@@ -93,12 +145,21 @@ const TopNav = ({ transparent = false, variant = "dark" }) => {
                 <div className="w-full h-[0.3px] bg-[#EBECEC]"></div>
 
                 <div className="px-4 py-3">
-                  <NavPopOverItem label="Logout" icon={IoMdLogOut} />
+                  {isLoggingOut ? (
+                    <CircleSpinner />
+                  ) : (
+                    <div onClick={handleLogout}>
+                      <NavPopOverItem label="Logout" icon={IoMdLogOut} />
+                    </div>
+                  )}
                 </div>
               </PopoverContent>
             </Popover>
           ) : (
-            <a href="/auth/login" className="bg-buttonblue rounded-full p-2 text-white">
+            <a
+              href="/auth/login"
+              className="bg-buttonblue rounded-full p-2 text-white"
+            >
               <IoLogInOutline />
             </a>
           )}

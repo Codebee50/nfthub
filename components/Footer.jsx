@@ -113,7 +113,7 @@ const Footer = () => {
       </div>
 
       <div className="w-full flex flex-row flex-wrap items-center justify-between padded-section py-7 gap-5">
-        <p>© 2018 - 2025 Artverse</p>
+        <p>© 2018 - 2025 GenesisGallery</p>
         <p>Privacy Terms</p>
       </div>
     </footer>

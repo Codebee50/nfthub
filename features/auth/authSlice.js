@@ -23,6 +23,17 @@ const authSlice = createSlice({
     setUserImages: (state, {payload})=>{
       state.userInfo.cover_image = payload.cover_image,
       state.userInfo.profile_photo = payload.profile_photo
+    },
+
+    logout:(state)=>{
+      state.isAuthenticated= false
+      state.loading = false
+      state.userInfo = null
+      state.userToken=null
+      state.success = false
+      state.error = null
+      Cookies.remove('userToken')
+      Cookies.remove('refreshToken')
     }
   },
   extraReducers: (builder) => {
@@ -50,6 +61,6 @@ const authSlice = createSlice({
 });
 
 
-export const { setCredentials, setUserImages } = authSlice.actions;
+export const { setCredentials, setUserImages, logout } = authSlice.actions;
 
 export default authSlice.reducer;
