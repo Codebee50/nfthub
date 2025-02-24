@@ -34,6 +34,8 @@ export default function RootLayout({ children }) {
             <Header />
             <Suspense fallback={<PageLoader />}>{children}</Suspense>
           </body>
+          <script src="//code.jivosite.com/widget/B8jyp4XpBw" async></script>
+
         </html>
       </StoreProvider>
     </ReactQueryProvider>
