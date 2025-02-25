@@ -26,6 +26,7 @@ import Cookies from "js-cookie";
 import CircleSpinner from "./loaders/CircleSpinner";
 import { logout } from "@/features/auth/authSlice";
 import { useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
 
 const TopNav = ({ transparent = false, variant = "dark" }) => {
   const { isAuthenticated, userInfo } = useSelector((state) => state.auth);
@@ -33,6 +34,7 @@ const TopNav = ({ transparent = false, variant = "dark" }) => {
 
   const postRequest = usePostRequest();
   const dispatch = useDispatch();
+  const router = useRouter()
 
   const { mutate: getUserBalance, isLoading: isGettingBalance } =
     useFetchRequest(
@@ -68,6 +70,13 @@ const TopNav = ({ transparent = false, variant = "dark" }) => {
 
     logoutUser(reqBody);
   };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const search = formData.get('search')
+    router.push(`/explore/marketplace/?search=${search}`)
+  };
   return (
     <nav
       className={`flex flex-row items-center justify-center w-[100vw] top-0 sticky ${
@@ -88,11 +97,28 @@ const TopNav = ({ transparent = false, variant = "dark" }) => {
         </a>
 
         <div className="flex flex-row items-center gap-4">
-          <IoSearchOutline
-            size={17}
-            className="cursor-pointe"
-            color={`${variant !== "dark" ? "#ffffff" : ""}`}
-          />
+          <Popover>
+            <PopoverTrigger>
+              <IoSearchOutline
+                size={17}
+                className="cursor-pointe"
+                color={`${variant !== "dark" ? "#ffffff" : ""}`}
+              />
+            </PopoverTrigger>
+            <PopoverContent className="p-0 w-max overflow-hidden" align="end">
+              <form action="" onSubmit={handleSearchSubmit}>
+                <input
+                  type="text"
+                  name="search"
+                  id="search"
+                  placeholder="Search..."
+                  className="px-2 py-2 outline-none border-none text-sm"
+                  required
+                />
+              </form>
+            </PopoverContent>
+          </Popover>
+
           {/* <CiBrightnessUp
             size={18}
             className="cursor-pointer"

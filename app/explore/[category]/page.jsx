@@ -16,10 +16,14 @@ import { BASE_BE_URL, makeApiUrl } from "@/contants/beRoute";
 import { toast } from "react-toastify";
 import PageLoader from "@/components/PageLoader";
 import CatStat from "@/components/CatStat";
+import { useSearchParams } from "next/navigation";
 
 const Page = () => {
   const [category, setCategory] = useState(null);
   const [nftList, setNftList] = useState([]);
+
+  const searchParams = useSearchParams();
+  const search = searchParams.get("search");
 
   const catStats = [
     {
@@ -54,12 +58,14 @@ const Page = () => {
   const params = useParams();
 
   let categoryId = params.category || 0;
- 
+  
 
+  const apiUrl = search
+    ? `/api/v1/product/nft/category/search/${categoryId}/?search=${search}`
+    : `/api/v1/product/nft/category/search/${categoryId}/`;
   const { mutate, isLoading } = useFetchRequest(
-    makeApiUrl(`/api/v1/product/nft/category/${categoryId}/`),
+    makeApiUrl(apiUrl),
     (response) => {
-      console.log(response);
       setCategory(response?.data?.data?.category);
       setNftList(response?.data?.data?.nfts);
     },

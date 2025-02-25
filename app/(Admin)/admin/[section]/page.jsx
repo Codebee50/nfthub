@@ -10,20 +10,21 @@ import NavPopOverItem from "@/components/NavPopOverItem";
 import { popoverItemList } from "@/contants/constants";
 import ImgDef from "@/components/ImgDef";
 import Home from "@/components/sections/admin/Home";
-import { LuWallet } from "react-icons/lu";
-import { PiHandWithdrawDuotone } from "react-icons/pi";
-import { FiUploadCloud, FiUser } from "react-icons/fi";
-import { IoChatbubbleOutline } from "react-icons/io5";
-import { IoSettingsOutline } from "react-icons/io5";
 import AdminSettings from "@/components/sections/admin/AdminSettings";
 import AdminDeposits from "@/components/sections/admin/AdminDeposits";
 import AdminWithdrawal from "@/components/sections/admin/AdminWithdrawal";
 import AdminArtUploads from "@/components/sections/admin/AdminArtUploads";
 import AdminCategory from "@/components/sections/AdminCategory";
-import { MdOutlineCategory } from "react-icons/md";
 import AdminUserList from "@/components/sections/AdminUserList";
 
 import { FiUsers } from "react-icons/fi";
+import { LuWallet } from "react-icons/lu";
+import { PiHandWithdrawDuotone } from "react-icons/pi";
+import { FiUploadCloud, FiUser } from "react-icons/fi";
+import { IoChatbubbleOutline } from "react-icons/io5";
+import { MdOutlineCategory } from "react-icons/md";
+import { IoSettingsOutline } from "react-icons/io5";
+
 
 
 const getSection = (currentSection) => {
@@ -62,11 +63,6 @@ const adminRightPanelList = [
     icon: FiUploadCloud,
     label: "Art uploads",
     link: "/admin/art",
-  },
-  {
-    icon: IoChatbubbleOutline,
-    label: "Chat",
-    link: "/dashboard/account",
   },
   {
     icon: MdOutlineCategory,

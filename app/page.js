@@ -91,6 +91,7 @@ export default function Home() {
               ethRate={ethExchangeRate}
               key={`cat-${category.name}`}
               objectList={objects}
+              moreLink={`/explore/${category.name}`}
             />
           );
         })

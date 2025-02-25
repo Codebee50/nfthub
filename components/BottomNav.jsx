@@ -22,7 +22,7 @@ const BottomNav = ({ variant = "dark" }) => {
         const transformed = response?.data.map((item) => ({
           value: `${item.id}`,
           label: item.name,
-          url: `/explore/${item.id}`,
+          url: `/explore/${item.name}`,
         }));
         transformed.unshift({
           value: "",

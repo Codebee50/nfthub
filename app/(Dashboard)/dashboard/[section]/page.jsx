@@ -15,25 +15,98 @@ import AuthProtected from "@/components/AuthProtected";
 import Settings from "@/components/sections/Settings";
 import ImgDef from "@/components/ImgDef";
 
-const getSection = (currentSection) => {
-  if (currentSection == "account") return <AccountSummary />;
+import AdminSettings from "@/components/sections/admin/AdminSettings";
+import AdminDeposits from "@/components/sections/admin/AdminDeposits";
+import AdminWithdrawal from "@/components/sections/admin/AdminWithdrawal";
+import AdminArtUploads from "@/components/sections/admin/AdminArtUploads";
+import AdminCategory from "@/components/sections/AdminCategory";
+import AdminUserList from "@/components/sections/AdminUserList";
 
-  if (currentSection === "mint") return <MintNft />;
+import { FiUsers } from "react-icons/fi";
+import { LuWallet } from "react-icons/lu";
+import { PiHandWithdrawDuotone } from "react-icons/pi";
+import { FiUploadCloud, FiUser } from "react-icons/fi";
+import { IoChatbubbleOutline } from "react-icons/io5";
+import { MdOutlineCategory } from "react-icons/md";
+import { IoSettingsOutline } from "react-icons/io5";
 
-  if (currentSection == "collection") return <Collections />;
+import { RiAdminLine } from "react-icons/ri";
+import { MdOutlineAdminPanelSettings } from "react-icons/md";
 
-  if (currentSection == "sales") return <Sales />;
-
-  if (currentSection == "settings") return <Settings />;
-
-  return <AccountSummary />;
-};
 
 const page = () => {
   const params = useParams();
   const currentSection = params.section || "account";
 
   const { userInfo } = useSelector((state) => state.auth);
+
+  const getSection = (currentSection) => {
+    if (currentSection == "account") return <AccountSummary />;
+
+    if (currentSection === "mint") return <MintNft />;
+
+    if (currentSection == "collection") return <Collections />;
+
+    if (currentSection == "sales") return <Sales />;
+
+    if (currentSection == "settings") return <Settings />;
+
+    if (userInfo?.is_admin) {
+      if (currentSection == "sitesettings") return <AdminSettings />;
+
+      if (currentSection == "deposits") return <AdminDeposits />;
+
+      if (currentSection == "withdrawals") return <AdminWithdrawal />;
+
+      if (currentSection == "art") return <AdminArtUploads />;
+
+      if (currentSection == "category") return <AdminCategory />;
+
+      if (currentSection == "users") return <AdminUserList />;
+    }
+
+    return <AccountSummary />;
+  };
+
+  const adminRightPanelList = [
+    {
+      icon: MdOutlineAdminPanelSettings,
+      label: "Admin page",
+      link: '/admin/home/'
+    }
+  ]
+  // const adminRightPanelList = [
+  //   {
+  //     icon: FiUsers,
+  //     label: "Users",
+  //     link: "/admin/users",
+  //   },
+  //   {
+  //     icon: LuWallet,
+  //     label: "Deposits",
+  //     link: "/admin/deposits",
+  //   },
+  //   {
+  //     icon: PiHandWithdrawDuotone,
+  //     label: "Withdrawals",
+  //     link: "/admin/withdrawals",
+  //   },
+  //   {
+  //     icon: FiUploadCloud,
+  //     label: "Art uploads",
+  //     link: "/admin/art",
+  //   },
+  //   {
+  //     icon: MdOutlineCategory,
+  //     label: "Category",
+  //     link: "/admin/category",
+  //   },
+  //   {
+  //     icon: IoSettingsOutline,
+  //     label: "Settings",
+  //     link: "/dashboard/sitesettings",
+  //   },
+  // ];
 
   return (
     <AuthProtected>
@@ -66,7 +139,10 @@ const page = () => {
 
             <div className="flex flex-col p-4">
               <div className="flex flex-col gap-2">
-                {popoverItemList.map((item, index) => {
+                {[
+                  ...(userInfo?.is_admin ? adminRightPanelList : []),
+                  ...popoverItemList,
+                ].map((item, index) => {
                   return (
                     <NavPopOverItem {...item} key={`popoveritem-${index}`} />
                   );
