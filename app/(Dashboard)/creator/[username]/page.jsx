@@ -82,7 +82,7 @@ const Page = () => {
           <ExpandableText text={creator?.user?.bio || ""} />
         </div>
 
-        <div className="w-full grid grid-cols-2 576:grid-cols-3 768:grid-cols-4 922:grid-cols-5 mt-16 lg:mt-28 gap-5 lg:gap-8 items-start justify-start">
+        <div className="w-full grid grid-cols-2 576:grid-cols-3 768:grid-cols-4 mt-16 lg:mt-28 gap-5 lg:gap-8 items-start justify-start">
           {creator?.nfts?.map((art) => (
             <ArtItem
               key={art.id}

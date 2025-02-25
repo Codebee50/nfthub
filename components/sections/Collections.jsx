@@ -12,6 +12,7 @@ import ArtItem from "../ArtItem";
 
 import EditArt from "../EditArt";
 import { useSelector } from "react-redux";
+import axios from "axios";
 
 const Collections = () => {
   const { userInfo } = useSelector((state) => state.auth);
