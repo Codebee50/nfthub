@@ -118,7 +118,9 @@ const Page = () => {
               <p className="font-semibold text-sm">
                 Owned by: <span className="ml-3">{art?.owner?.username}</span>
               </p>
-              <MdVerified className="fill-buttonblue" />
+              {art?.owner?.is_verified && (
+                <MdVerified className="fill-buttonblue" />
+              )}
             </div>
 
             <p className="text-textmuted mt-10">{art?.description}</p>

@@ -76,7 +76,7 @@ const Page = () => {
         <div className="w-full flex flex-col items-center mt-5 gap-4">
           <div className="flex flex-row items-center gap-2">
             <p className="font-semibold text-xl">{creator?.user?.username}</p>
-            <MdVerified className="fill-buttonblue" />
+            {creator?.user?.is_verified && <MdVerified className="fill-buttonblue" />}
           </div>
           <CopyCreatorsLink username={creator?.user?.username} />
           <ExpandableText text={creator?.user?.bio || ""} />
