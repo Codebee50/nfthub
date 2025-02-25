@@ -58,7 +58,7 @@ const Page = () => {
   const params = useParams();
 
   let categoryId = params.category || 0;
-  
+
 
   const apiUrl = search
     ? `/api/v1/product/nft/category/search/${categoryId}/?search=${search}`
@@ -158,7 +158,7 @@ const Page = () => {
                   _id={art.id}
                   avatar={art.owner.profile_photo}
                   price={art.price}
-                  image={`${BASE_BE_URL}${art.image}`}
+                  image={`${art.image}`}
                   ethRate={ethExchangeRate}
                 />
               ))}
