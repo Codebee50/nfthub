@@ -30,6 +30,8 @@ import AdminEditUserForm from "./admin/AdminEditUserForm";
 import { formatDate } from "@/contants/constants";
 import VerifyToggler from "../VerifyToggler";
 import CheckRequestToggler from "../CheckRequestToggler";
+import { MdRemoveRedEye } from "react-icons/md";
+
 
 const AdminUserList = () => {
   const tableHeaderList = [
@@ -113,7 +115,7 @@ const AdminUserList = () => {
                   <Dialog>
                     <DialogTrigger>
                       <div>
-                        <FaEye />
+                        <MdRemoveRedEye />
                       </div>
                     </DialogTrigger>
                     <DialogContent className="p-0 flex flex-col items-start justify-start">
