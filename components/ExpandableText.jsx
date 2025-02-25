@@ -16,7 +16,7 @@ const ExpandableText = ({ text, maxLength=100 }) => {
       <p>{isExpanded ? text : `${text.substring(0, maxLength)}...`}</p>
       <button
         onClick={toggleReadMore}
-        className="font-semibold"
+        className="font-semibold text-sm"
       >
         {isExpanded ? "See less" : "See more"}
       </button>

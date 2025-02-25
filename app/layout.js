@@ -28,12 +28,12 @@ export default function RootLayout({ children }) {
     <ReactQueryProvider>
       <StoreProvider>
         <html lang="en">
-          <head>
+          {/* <head>
             <Script
               src="//code.jivosite.com/widget/B8jyp4XpBw"
               strategy="lazyOnload"
             />
-          </head>
+          </head> */}
           <body
             className={`${geistSans.variable} ${geistMono.variable} antialiased`}
           >

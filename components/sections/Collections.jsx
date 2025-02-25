@@ -11,8 +11,10 @@ import { nftList } from "@/contants/constants";
 import ArtItem from "../ArtItem";
 
 import EditArt from "../EditArt";
+import { useSelector } from "react-redux";
 
 const Collections = () => {
+  const { userInfo } = useSelector((state) => state.auth);
   const [userNfts, setUserNfts] = useState([]);
   const { mutate: getUserNfts, isLoading } = useFetchRequest(
     makeApiUrl("/api/v1/product/nft/user/list/"),
@@ -42,15 +44,15 @@ const Collections = () => {
 
   useEffect(() => {
     getUserNfts();
-    getEthPrice()
+    getEthPrice();
   }, []);
 
   return (
     <div className="w-full flex flex-col">
-      <div className="w-full flex flex-row items-center justify-between">
+      <div className="w-full flex flex-row items-center justify-between max-br-429:flex-wrap">
         <SectionHeaderText label={"Collection"} />
 
-        <CopyCreatorsLink />
+        <CopyCreatorsLink username={userInfo?.username} />
       </div>
 
       {userNfts.length <= 0 ? (
@@ -70,7 +72,6 @@ const Collections = () => {
                   ethRate={ethExchangeRate}
                   avatar={nft.owner.profile_photo}
                   clickEvents={false}
-                  
                 />
               </EditArt>
             );
