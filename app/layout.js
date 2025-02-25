@@ -30,7 +30,7 @@ export default function RootLayout({ children }) {
         <html lang="en">
           <head>
             <Script
-              src="//code.jivosite.com/widget/B8jyp4XpBw"
+              src="//code.jivosite.com/widget/fRx1Tj6paz"
               strategy="lazyOnload"
             />
           </head>
