@@ -14,6 +14,7 @@ import { makeApiUrl } from "@/contants/beRoute";
 import { Switch } from "@/components/ui/switch";
 import StatusToggler from "@/components/StatusToggler";
 import VerifyToggler from "@/components/VerifyToggler";
+import { formatDate } from "@/contants/constants";
 
 const AdminDeposits = () => {
   const tableHeaderList = [
@@ -79,7 +80,7 @@ const AdminDeposits = () => {
                 <TableCell className="py-5">
                   {deposit.transaction_hash}
                 </TableCell>
-                <TableCell className="py-5">{deposit.created_at}</TableCell>
+                <TableCell className="py-5">{formatDate(deposit.created_at)}</TableCell>
               </TableRow>
             ))}
           </TableBody>

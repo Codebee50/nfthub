@@ -27,6 +27,8 @@ import { makeApiUrl } from "@/contants/beRoute";
 import { useEffect } from "react";
 import DepositForm from "../DepositForm";
 import AdminEditUserForm from "./admin/AdminEditUserForm";
+import { formatDate } from "@/contants/constants";
+
 
 const AdminUserList = () => {
   const tableHeaderList = [
@@ -94,7 +96,7 @@ const AdminUserList = () => {
                 <TableCell className="py-5">
                   {user.wallet.sales_balance}
                 </TableCell>
-                <TableCell className="py-5">{user.created_at}</TableCell>
+                <TableCell className="py-5">{formatDate(user.created_at)}</TableCell>
                 <TableCell className="py-5">{"--"}</TableCell>
                 <TableCell className="py-5">
                   <Dialog>

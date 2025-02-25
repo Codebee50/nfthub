@@ -676,3 +676,8 @@ export const popoverItemList = [
 export const formatRate = (value) => {
   return value.toLocaleString("en-US", { style: "currency", currency: "USD" });
 }
+
+export const formatDate = (value) =>{
+  const date = new Date(value)
+  return date.toLocaleDateString("en-US")
+}
