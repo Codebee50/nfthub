@@ -12,7 +12,7 @@ import ImgDef from "@/components/ImgDef";
 import Home from "@/components/sections/admin/Home";
 import { LuWallet } from "react-icons/lu";
 import { PiHandWithdrawDuotone } from "react-icons/pi";
-import { FiUploadCloud } from "react-icons/fi";
+import { FiUploadCloud, FiUser } from "react-icons/fi";
 import { IoChatbubbleOutline } from "react-icons/io5";
 import { IoSettingsOutline } from "react-icons/io5";
 import AdminSettings from "@/components/sections/admin/AdminSettings";
@@ -21,6 +21,10 @@ import AdminWithdrawal from "@/components/sections/admin/AdminWithdrawal";
 import AdminArtUploads from "@/components/sections/admin/AdminArtUploads";
 import AdminCategory from "@/components/sections/AdminCategory";
 import { MdOutlineCategory } from "react-icons/md";
+import AdminUserList from "@/components/sections/AdminUserList";
+
+import { FiUsers } from "react-icons/fi";
+
 
 const getSection = (currentSection) => {
   if (currentSection == "settings") return <AdminSettings />;
@@ -33,10 +37,17 @@ const getSection = (currentSection) => {
 
   if (currentSection == "category") return <AdminCategory />;
 
+  if (currentSection == "users") return <AdminUserList />;
+
   return <AdminSettings />;
 };
 
 const adminRightPanelList = [
+  {
+    icon: FiUsers,
+    label: "Users",
+    link: "/admin/users",
+  },
   {
     icon: LuWallet,
     label: "Deposits",
