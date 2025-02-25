@@ -4,13 +4,13 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 import CircleSpinner from "./loaders/CircleSpinner";
 import { handleGenericError } from "@/utils/errorHandler";
+import { Checkbox } from "@/components/ui/checkbox"
 
-const VerifyToggler = ({
+
+const CheckRequestToggler = ({
   isVerifiedInitial = false,
   verifyUrl = "",
   declineUrl = "",
-  verifiedWord="decline",
-  declinedWord="verify"
 }) => {
   const [isVerified, setIsVerified] = useState(isVerifiedInitial);
 
@@ -38,37 +38,19 @@ const VerifyToggler = ({
     }
   );
 
-  const handleVerifyClicked = () => {
-    mutate();
-  };
-
-  const handleDeclineClicked = () => {
-    decline();
+  const handleCheckedChanged = (isChecked) => {
+    if (isChecked) {
+      mutate();
+    } else {
+      decline();
+    }
   };
 
   if (isDeclining || isLoading) {
     return <CircleSpinner />;
   }
 
-  return (
-    <div>
-      {isVerified ? (
-        <p
-          className="text-buttonblue cursor-pointer font-medium"
-          onClick={handleDeclineClicked}
-        >
-          {verifiedWord}
-        </p>
-      ) : (
-        <button
-          onClick={handleVerifyClicked}
-          className="bg-buttonblue text-white px-2 py-1 rounded-sm text-sm cursor-pointer"
-        >
-          {declinedWord}
-        </button>
-      )}
-    </div>
-  );
+  return <Checkbox checked={isVerified} onCheckedChange={handleCheckedChanged} />;
 };
 
-export default VerifyToggler;
+export default CheckRequestToggler;

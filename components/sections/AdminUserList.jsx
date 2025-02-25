@@ -28,7 +28,8 @@ import { useEffect } from "react";
 import DepositForm from "../DepositForm";
 import AdminEditUserForm from "./admin/AdminEditUserForm";
 import { formatDate } from "@/contants/constants";
-
+import VerifyToggler from "../VerifyToggler";
+import CheckRequestToggler from "../CheckRequestToggler";
 
 const AdminUserList = () => {
   const tableHeaderList = [
@@ -36,6 +37,7 @@ const AdminUserList = () => {
     "id",
     "Username",
     "Email",
+    "Verified",
     "Account balance",
     "Sales balance",
     "Created at",
@@ -91,12 +93,21 @@ const AdminUserList = () => {
 
                 <TableCell className="py-5">{user.email}</TableCell>
                 <TableCell className="py-5">
+                  <CheckRequestToggler
+                    declineUrl={`/api/v1/auth/status/${user.id}/false/`}
+                    verifyUrl={`/api/v1/auth/status/${user.id}/true/`}
+                    isVerifiedInitial={user.is_verified}
+                  />
+                </TableCell>
+                <TableCell className="py-5">
                   {user.wallet.account_balance}
                 </TableCell>
                 <TableCell className="py-5">
                   {user.wallet.sales_balance}
                 </TableCell>
-                <TableCell className="py-5">{formatDate(user.created_at)}</TableCell>
+                <TableCell className="py-5">
+                  {formatDate(user.created_at)}
+                </TableCell>
                 <TableCell className="py-5">{"--"}</TableCell>
                 <TableCell className="py-5">
                   <Dialog>
